@@ -1,0 +1,21 @@
+class Problem1 {
+    public int sum;
+    public int multiple(int number) {
+        for (int i = 1; i <= number; i++) {
+            if (i % 3 == 0 || i % 5 == 0) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem1 exercise1 = new Problem1();
+        System.out.println(exercise1.multiple(9));
+
+        Problem1 exercise2 = new Problem1();
+        System.out.println(exercise2.multiple(999));
+    }
+}
