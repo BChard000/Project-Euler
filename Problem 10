@@ -1,0 +1,29 @@
+class Problem10 {
+    int number = 2;
+    long sum = 0;
+
+    public boolean isPrime(long x) {
+        long y = 2;
+        while (y <= Math.sqrt(x) && x % y != 0) {
+            y++;
+        }
+        return y > Math.sqrt(x);
+    }
+
+    public long primeSum() {
+        while (number < 2000000) {
+            if (isPrime(number)) {
+                sum += number;
+            }
+            number++;
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem10 exercise = new Problem10();
+        System.out.println(exercise.primeSum());
+    }
+}
