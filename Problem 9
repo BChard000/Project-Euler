@@ -1,0 +1,30 @@
+class Problem9 {
+    public int product() {
+        int sum = 0;
+        int n = 1;
+        int a, b, c;
+        int prod = 0;
+
+        while (sum != 1000) {
+            for (int m = 1; m < n; m++) {
+                a = (int)(Math.pow(n, 2) - Math.pow(m, 2));
+                b = 2*n*m;
+                c = (int)(Math.pow(n, 2) + Math.pow(m, 2));
+
+                if (a+b+c == 1000) {
+                    sum = 1000;
+                    prod = a*b*c;
+                }
+            }
+            n++;
+        }
+        return prod;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem9 exercise = new Problem9();
+        System.out.println(exercise.product());
+    }
+}
