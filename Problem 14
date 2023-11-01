@@ -1,0 +1,32 @@
+class Problem14 {
+    public int sequence() {
+        int longestChain = 0;
+        int longestChainNumber = 0;
+        int n;
+
+        for (int i = 2; i < 1000000; i++) {
+            n = i;
+            int chainCounter = 1;
+            while (n != 1) {
+                if (n % 2 == 0) {
+                    n = n/2;
+                }
+                else {
+                    n = 3*n+1;
+                }
+                chainCounter++;
+            }
+            if (chainCounter > longestChain) {
+                longestChainNumber = i;
+            }
+        }
+        return longestChainNumber;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem14 exercise = new Problem14();
+        System.out.println(exercise.sequence());
+    }
+}
