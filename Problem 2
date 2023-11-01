@@ -1,0 +1,25 @@
+class Problem2 {
+    int num1 = 1;
+    int num2 = 2;
+    int temp;
+    int sum;
+
+    public int fibonacci() {
+        while (num2 < 4000000) {
+            if (num2 % 2 == 0) {
+                sum += num2;
+            }
+            temp = num2;
+            num2 = num1 + num2;
+            num1 = temp;
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem2 exercise = new Problem2();
+        System.out.println(exercise.fibonacci());
+    }
+}
