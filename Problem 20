@@ -1,0 +1,24 @@
+import java.math.BigInteger;
+
+class Problem19 {
+    public int sum() {
+        BigInteger number = BigInteger.ONE;
+        for (int i = 2; i <= 100; i++) {
+            number = number.multiply(BigInteger.valueOf(i));
+        }
+
+        String[] numberToArray = String.valueOf(number).split("", 0);
+        int sum = 0;
+        for (int i = 0; i < numberToArray.length; i++) {
+            sum += Integer.parseInt(numberToArray[i]);
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem19 exercise = new Problem19();
+        System.out.println(exercise.sum());
+    }
+}
