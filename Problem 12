@@ -1,0 +1,27 @@
+class Problem12 {
+    public int divisor() {
+        int counter = 0;
+        int number = 0;
+        int i = 0;
+
+        while (counter < 500) {
+            i++;
+            number = ((i)*(i+1))/2;
+            counter = 0;
+            for (int j = 1; j < Math.sqrt(number); j++) {
+                if (number % j == 0) {
+                    counter++;
+                }
+            }
+            counter *= 2;
+        }
+        return number;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem12 exercise = new Problem12();
+        System.out.println(exercise.divisor());
+    }
+}
