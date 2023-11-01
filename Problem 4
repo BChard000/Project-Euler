@@ -1,0 +1,39 @@
+class Problem4 {
+    public int palindromeOfTwoDigit() {
+        int largest = 0;
+        int product;
+        for (int i = 10; i <= 99; i++) {
+            for (int j = 10; j <= 99; j++) {
+                product = i * j;
+                if (String.valueOf(product).equals(new StringBuilder(String.valueOf(product)).reverse().toString()) && product > largest) {
+                    largest = product;
+                }
+            }
+        }
+        return largest;
+    }
+
+    public int palindromeOfThreeDigit() {
+        int largest = 0;
+        int product;
+        for (int i = 100; i <= 999; i++) {
+            for (int j = 100; j <= 999; j++) {
+                product = i * j;
+                if (String.valueOf(product).equals(new StringBuilder(String.valueOf(product)).reverse().toString()) && product > largest) {
+                    largest = product;
+                }
+            }
+        }
+        return largest;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem4 exercise1 = new Problem4();
+        System.out.println(exercise1.palindromeOfTwoDigit());
+
+        Problem4 exercise2 = new Problem4();
+        System.out.println(exercise2.palindromeOfThreeDigit());
+    }
+}
