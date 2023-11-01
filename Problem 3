@@ -1,0 +1,35 @@
+class Problem3 {
+    private long number;
+
+    public Problem3(long number) {
+        this.number = number;
+    }
+
+    public boolean isPrime(long x) {
+        long y = 2;
+        while (y <= Math.sqrt(x) && x % y != 0) {
+            y++;
+        }
+        return y > Math.sqrt(x);
+    }
+
+    public int largestPrimeFactor() {
+        int largest = 0;
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (isPrime(i) && number % i == 0 && i > largest) {
+                largest = i;
+            }
+        }
+        return largest;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem3 exercise1 = new Problem3(13195);
+        System.out.println(exercise1.largestPrimeFactor());
+
+        Problem3 exercise2 = new Problem3(600851475143L);
+        System.out.println(exercise2.largestPrimeFactor());
+    }
+}
