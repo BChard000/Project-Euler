@@ -1,0 +1,33 @@
+import java.math.BigInteger;
+
+class Problem15 {
+    public BigInteger paths() {
+        int n = 40;
+        int k = n/2;
+
+        BigInteger nFactorial = BigInteger.ONE;
+        for (int i = n; i > 1; i--) {
+            nFactorial = nFactorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger kFactorial = BigInteger.ONE;
+        for (int i = k; i > 1; i--) {
+            kFactorial = kFactorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger nMinuskFactorial = BigInteger.ONE;
+        for (int i = n - k; i > 1; i--) {
+            nMinuskFactorial = nMinuskFactorial.multiply(BigInteger.valueOf(i));
+        }
+
+        BigInteger sum = nFactorial.divide((kFactorial.multiply(nMinuskFactorial)));
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem15 exercise = new Problem15();
+        System.out.println(exercise.paths());
+    }
+}
