@@ -1,0 +1,25 @@
+import java.util.Calendar;
+
+class Problem19 {
+    public int count() {
+        int counter = 0;
+
+        Calendar calendar = Calendar.getInstance();
+        for (int year = 1901; year <= 2000; year++) {
+            for (int month = 0; month < 12; month++) {
+                calendar.set(year, month, 1);
+                if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem19 exercise = new Problem19();
+        System.out.println(exercise.count());
+    }
+}
