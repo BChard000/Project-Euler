@@ -1,0 +1,49 @@
+class Problem17 {
+    public String numberToWord(int number) {
+        String[] units = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+        String[] teens = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        String[] tens = {"", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+        if (number == 1000) {
+            return "one thousand";
+        }
+        if (number >= 100) {
+            int hundreds = number / 100;
+            int remainder = number % 100;
+            if (remainder == 0) {
+                return units[hundreds] + " hundred";
+            } else {
+                return units[hundreds] + " hundred and " + numberToWord(remainder);
+            }
+        }
+        if (number >= 20) {
+            int tensIndex = number / 10;
+            int unitsIndex = number % 10;
+            if (unitsIndex > 0) {
+                return tens[tensIndex] + "-" + units[unitsIndex];
+            } else {
+                return tens[tensIndex];
+            }
+        }
+        if (number >= 10) {
+            return teens[number - 10];
+        }
+        return units[number];
+    }
+
+    public int count() {
+        int counter = 0;
+        for (int i = 1; i <= 1000; i++) {
+            String word = numberToWord(i);
+            word = word.replaceAll("[-\\s]", ""); // remove spaces and hyphens
+            counter += word.length();
+        }
+        return counter;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem17 exercise = new Problem17();
+        System.out.println(exercise.count());
+    }
+}
