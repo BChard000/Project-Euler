@@ -1,0 +1,41 @@
+class Problem26 {
+    public int findCycleLength(int d) {
+        int[] remainders = new int[d];
+        int value = 1;
+        int position = 0;
+
+        while (remainders[value] == 0 && value != 0) {
+            remainders[value] = position;
+            value *= 10;
+            value %= d;
+            position++;
+        }
+
+        if (value == 0) {
+            return 0;
+        }
+
+        return position - remainders[value];
+    }
+
+    public int max() {
+        int maxCycleLength = 0;
+        int numberWithMaxCycle = 0;
+
+        for (int d = 2; d < 1000; d++) {
+            int cycleLength = findCycleLength(d);
+            if (cycleLength > maxCycleLength) {
+                maxCycleLength = cycleLength;
+                numberWithMaxCycle = d;
+            }
+        }
+        return numberWithMaxCycle;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem26 exercise = new Problem26();
+        System.out.println(exercise.max());
+    }
+}
