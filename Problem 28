@@ -1,0 +1,20 @@
+class Problem28 {
+    public long sum() {
+        long sum = 1; // Start with the center value
+        for (int n = 3; n <= 1001; n += 2) { // Start at 3x3 and increase by 2 each time for odd squares
+            int square = n * n;
+            sum += square; //Top right corner
+            sum += square - (n - 1); // Top left corner
+            sum += square - 2 * (n - 1); // Bottom left corner
+            sum += square - 3 * (n - 1); // Bottom right corner
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem28 exercise = new Problem28();
+        System.out.println(exercise.sum());
+    }
+}
