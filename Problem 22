@@ -1,0 +1,52 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Problem22 {
+    public ArrayList<String> read() {
+        String filePath = "C:\\Users\\balog\\Documents\\Java\\Project Euler\\0022_names.txt";
+        ArrayList<String> names = new ArrayList<>();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            for (String line : lines) {
+                String[] splitLine = line.split(","); // assuming the names are separated by commas
+                for (String name : splitLine) {
+                    names.add(name.replace("\"", "")); // remove quotes if present
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+        return names;
+    }
+
+    public int nameScore(String name) {
+        int score = 0;
+        for (char c : name.toCharArray()) {
+            score += c - 'A' + 1;
+        }
+        return score;
+    }
+
+    public int total() {
+        ArrayList<String> nameList = read();
+        Collections.sort(nameList);
+
+        int sum = 0;
+        for (int i = 0; i < nameList.size(); i++) {
+            int nameScore = nameScore(nameList.get(i));
+            sum += nameScore * (i + 1);
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem22 exercise = new Problem22();
+        System.out.println(exercise.total());
+    }
+}
