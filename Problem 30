@@ -1,0 +1,26 @@
+class Problem30 {
+    public int power() {
+        int i = 2;
+        int sum = 0;
+        int powerSum;
+        while (i < Math.pow(10, 6)) {
+            powerSum = 0;
+            String numberString = String.valueOf(i);
+            for (int j = 0; j < numberString.length(); j++) {
+                powerSum += Math.pow(Character.getNumericValue(numberString.charAt(j)), 5);
+            }
+            if (powerSum == i) {
+                sum += i;
+            }
+            i++;
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem30 exercise = new Problem30();
+        System.out.println(exercise.power());
+    }
+}
