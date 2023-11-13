@@ -1,0 +1,32 @@
+class Problem21 {
+    public int amicableSum() {
+        int properSum1;
+        int properSum2;
+        int sum = 0;
+        for (int i = 1; i < 10000; i++) {
+            properSum1 = 0;
+            for (int j = 1; j <= i / 2; j++) {
+                if (i % j == 0) {
+                    properSum1 += j;
+                }
+            }
+            properSum2 = 0;
+            for (int k = 1; k <= properSum1 / 2; k++) {
+                if (properSum1 % k == 0) {
+                    properSum2 += k;
+                }
+            }
+            if (i == properSum2 && i != properSum1) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem21 exercise = new Problem21();
+        System.out.println(exercise.amicableSum());
+    }
+}
