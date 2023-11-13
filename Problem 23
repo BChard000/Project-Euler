@@ -1,0 +1,58 @@
+import java.util.HashSet;
+import java.util.Set;
+
+class Problem23 {
+    public boolean isAbundant(int number) {
+        int sum = 1; // 1 is always a divisor of any number
+        for (int i = 2; i*i <= number; i++) {
+            if (number % i == 0) {
+                sum += i;
+                if (i != number/i) {
+                    sum += number/i;
+                }
+            }
+        }
+        return sum > number;
+    }
+
+    public Set<Integer> findAbundant(int limit) {
+        Set<Integer> abundantNumbers = new HashSet<>();
+        for (int i = 12; i <= limit; i++) {
+            if (isAbundant(i)) {
+                abundantNumbers.add(i);
+            }
+        }
+        return abundantNumbers;
+    }
+
+    public Set<Integer> findSumOfAbundants(Set<Integer> abundantNumbers, int limit) {
+        Set<Integer> sumOfAbundants = new HashSet<>();
+        for (int a : abundantNumbers) {
+            for (int b : abundantNumbers) {
+                if (a + b <= limit) {
+                    sumOfAbundants.add(a + b);
+                } else {
+                    break;
+                }
+            }
+        }
+        return sumOfAbundants;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        int limit = 28123;
+        Problem23 exercise = new Problem23();
+        Set<Integer> abundantNumbers = exercise.findAbundant(limit);
+        Set<Integer> sumOfAbundants = exercise.findSumOfAbundants(abundantNumbers, limit);
+
+        long sum = 0;
+        for (int i = 1; i <= limit; i++) {
+            if (!sumOfAbundants.contains(i)) {
+                sum += i;
+            }
+        }
+        System.out.println(sum);
+    }
+}
