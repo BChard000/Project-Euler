@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Problem24 {
+    public String getLexicographicPermutation(int n, int[] digits) {
+        StringBuilder result = new StringBuilder();
+        List<Integer> availableDigits = new ArrayList<>();
+        for (int digit : digits) {
+            availableDigits.add(digit);
+        }
+        n--;
+
+        int factorial = 1;
+        for (int i = 1; i < digits.length; i++) {
+            factorial *= i;
+        }
+
+        for (int i = digits.length - 1; i >= 0; i--) {
+            int index = n / factorial;
+            result.append(availableDigits.get(index));
+            availableDigits.remove(index);
+            if (i > 0) {
+                n %= factorial;
+                factorial /= i;
+            }
+        }
+        return result.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem24 exercise = new Problem24();
+        int[] digits = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String result = exercise.getLexicographicPermutation(1000000, digits);
+        System.out.println(result);
+    }
+}
