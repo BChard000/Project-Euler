@@ -1,0 +1,21 @@
+import java.math.BigInteger;
+import java.util.HashSet;
+
+class Problem29 {
+    public int combinations() {
+        HashSet<BigInteger> elements = new HashSet<>();
+        for (int a = 2; a <= 100; a++) {
+            for (int b = 2; b <= 100; b++) {
+                elements.add(BigInteger.valueOf(a).pow(b));
+            }
+        }
+        return elements.size();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem29 exercise = new Problem29();
+        System.out.println(exercise.combinations());
+    }
+}
