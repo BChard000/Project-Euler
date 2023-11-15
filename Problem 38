@@ -1,0 +1,30 @@
+class Problem38 {
+    public boolean isPandigital(int x) {
+        String concat = String.valueOf(x);
+        if (concat.length() != 9) return false;
+
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (concat.indexOf(ch) == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int solution() {
+        for (int x = 9487; x >= 9234; x--) {
+            int res = 100002 * x;
+            if (isPandigital(res)) {
+                return res;
+            }
+        }
+        return -1;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem38 exercise = new Problem38();
+        System.out.println(exercise.solution());
+    }
+}
