@@ -1,0 +1,36 @@
+class Problem34 {
+    public int[] factorial() {
+        int[] fact = new int[10];
+        fact[0] = 1;
+        for (int i = 1; i < 10; i++) {
+            fact[i] = fact[i-1] * i;
+        }
+        return fact;
+    }
+
+    public int factorialSum(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += factorial()[n%10];
+            n = n / 10;
+        }
+        return sum;
+    }
+
+    public int curiousNumSum() {
+        int sum = 0;
+        for (int i = 10; i <= 1499999; i++) {
+            if (i == factorialSum(i)) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem34 exercise = new Problem34();
+        System.out.println(exercise.curiousNumSum());
+    }
+}
