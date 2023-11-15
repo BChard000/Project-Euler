@@ -1,0 +1,35 @@
+class Problem47 {
+    public int counter(int number) {
+        int count = 0;
+        for (int i = 2; i <= number; i++) {
+            if (number % i == 0) {
+                count++;
+                while (number % i == 0) {
+                    number /= i;
+                }
+            }
+        }
+        return count;
+    }
+
+    public int solution() {
+        int consecutive = 0;
+        for (int i = 2; ; i++) {
+            if (counter(i) == 4) {
+                consecutive++;
+                if (consecutive == 4) {
+                    return i - 4 + 1;
+                }
+            } else {
+                consecutive = 0;
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem47 exercise = new Problem47();
+        System.out.println(exercise.solution());
+    }
+}
