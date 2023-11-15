@@ -1,0 +1,22 @@
+class Problem45 {
+    public boolean isPentagonal(long x) {
+        double r = Math.sqrt(1 + 24 * x);
+        return r % 6 == 5;
+    }
+
+    public long solution() {
+        for (int m = 144; ; m++) {
+            long number = 2L * m * m - m;
+            if (isPentagonal(number)) {
+                return number;
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem45 exercise = new Problem45();
+        System.out.println(exercise.solution());
+    }
+}
