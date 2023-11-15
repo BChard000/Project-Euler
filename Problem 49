@@ -1,0 +1,38 @@
+import java.util.Arrays;
+
+class Problem48 {
+    public boolean isPrime(int x) {
+        if (x == 2) return true;
+        if (x % 2 == 0) return false;
+        for (int i = 3; i * i <= x; i += 2) {
+            if (x % i == 0) return false;
+        }
+        return true;
+    }
+
+    public String solution() {
+        for (int i = 1000; i <= 6670; i++) {
+            if (isPrime(i) && i != 1487 && isPrime(i + 3330) && isPrime(i + 2 * 3330)) {
+                char[] list1 = String.valueOf(i).toCharArray();
+                char[] list2 = String.valueOf(i + 3330).toCharArray();
+                char[] list3 = String.valueOf(i + 2 * 3330).toCharArray();
+
+                Arrays.sort(list1);
+                Arrays.sort(list2);
+                Arrays.sort(list3);
+
+                if (Arrays.equals(list1, list2) && Arrays.equals(list1, list3)) {
+                    return String.valueOf(i) + (i + 3330) + (i + 2 * 3330);
+                }
+            }
+        }
+        return "Something";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem48 exercise = new Problem48();
+        System.out.println(exercise.solution());
+    }
+}
