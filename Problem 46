@@ -1,0 +1,48 @@
+class Problem46 {
+    public boolean isPrime(int x) {
+        if (x == 2) return true;
+        if (x % 2 == 0) return false;
+        for (int i = 3; i * i <= x; i += 2) {
+            if (x % i == 0) return false;
+        }
+        return true;
+    }
+
+    public boolean isComposite(int x) {
+        return !isPrime(x);
+    }
+
+    public boolean sum(int x, int y, int z) {
+        return x == y + 2 * Math.pow(z, 2);
+    }
+
+    public int solution() {
+        int number = 33;
+        while (true) {
+            boolean check = false;
+            if (isComposite(number)) {
+                for (int i = 2; i < number && !check; i++) {
+                    if (isPrime(i)) {
+                        for (int j = 1; 2*j*j < number; j++) {
+                            if (sum(number, i, j)) {
+                                check = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!check) {
+                    return number;
+                }
+            }
+            number += 2;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem46 exercise = new Problem46();
+        System.out.println(exercise.solution());
+    }
+}
