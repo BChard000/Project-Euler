@@ -1,0 +1,42 @@
+class Problem41 {
+    public boolean isPrime(int x) {
+        if (x <= 1) return false;
+        for (int i = 2; i * i <= x; i++) {
+            if (x % i == 0) return false;
+        }
+        return true;
+    }
+
+    public boolean isPandigital(int x) {
+        String concat = String.valueOf(x);
+        if (concat.length() != 7) return false;
+
+        for (char ch = '1'; ch <= '7'; ch++) {
+            if (concat.indexOf(ch) == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int solution() {
+        int largest = 0;
+        int pandigitalPrime;
+        for (int i = 1000000; i < 10000000; i++) {
+            if (isPandigital(i) && isPrime(i)) {
+                pandigitalPrime = i;
+                if (pandigitalPrime > largest) {
+                    largest = pandigitalPrime;
+                }
+            }
+        }
+        return largest;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem41 exercise = new Problem41();
+        System.out.println(exercise.solution());
+    }
+}
