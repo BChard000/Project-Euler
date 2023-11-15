@@ -1,0 +1,40 @@
+import java.util.HashSet;
+import java.util.Set;
+
+class Problem32 {
+    public boolean isPanDigital(int x, int y, int z) {
+        String concat = String.valueOf(x) + String.valueOf(y) + String.valueOf(z);
+        if (concat.length() != 9) return false;
+
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (concat.indexOf(ch) == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public long productSum() {
+        Set<Integer> products = new HashSet<>();
+        long sum = 0;
+
+        for (int i = 1; i < 100; i++) {
+            for (int j = i + 1; j < 10000 / i; j++) {
+                int product = i * j;
+                if (isPanDigital(i, j, product)) {
+                    if (products.add(product)) {
+                        sum += product;
+                    }
+                }
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem32 exercise = new Problem32();
+        System.out.println(exercise.productSum());
+    }
+}
