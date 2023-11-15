@@ -1,0 +1,49 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+
+class Problem42 {
+    public ArrayList<String> read() {
+        String filePath = "C:\\Users\\balog\\Documents\\Java\\Project Euler\\0042_words.txt";
+        ArrayList<String> words = new ArrayList<>();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            for (String line : lines) {
+                String[] splitLine = line.split(","); // assuming the names are separated by commas
+                for (String name : splitLine) {
+                    words.add(name.replace("\"", "")); // remove quotes if present
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+        return words;
+    }
+
+    public int isTriangular() {
+        ArrayList<String> list = read();
+        int sum;
+        int counter = 0;
+        for (int i = 0; i < list.size(); i++) {
+            String word = list.get(i);
+            sum = 0;
+            for (int j = 0; j < word.length(); j++) {
+                sum += (word.charAt(j) - 64);
+            }
+            double n = ((Math.sqrt(8 * sum + 1) - 1) / 2);
+            if (n == (int)n) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem42 exercise = new Problem42();
+        System.out.println(exercise.isTriangular());
+    }
+}
