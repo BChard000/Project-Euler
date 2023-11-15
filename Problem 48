@@ -1,0 +1,23 @@
+import java.math.BigInteger;
+
+class Problem48 {
+    public BigInteger series() {
+        BigInteger sum = BigInteger.ZERO;
+        for (int i = 1; i <= 1000; i++) {
+            sum = sum.add(BigInteger.valueOf(i).pow(i));
+        }
+        return sum;
+    }
+
+    public String solution() {
+        String str = String.valueOf(series());
+        return str.substring(str.length() - 10);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem48 exercise = new Problem48();
+        System.out.println(exercise.solution());
+    }
+}
