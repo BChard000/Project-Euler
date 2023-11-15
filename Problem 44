@@ -1,0 +1,30 @@
+import java.util.ArrayList;
+
+class Problem44 {
+    public boolean isPentagonal(int x) {
+        double r = Math.sqrt(1 + 24 * x);
+        return r % 6 == 5;
+    }
+
+    public int solution() {
+        int smallest = Integer.MAX_VALUE;
+        for (int j = 1; j < 5000; j++) {
+            int Pj = j * (3 * j - 1) / 2;
+            for (int k = j + 1; k < 5000; k++) {
+                int Pk = k * (3 * k - 1) / 2;
+                int diff = Pj - Pk;
+                if (isPentagonal(Pk - Pj) && isPentagonal(Pj + Pk)) {
+                    smallest = Math.abs(Math.min(smallest, diff));
+                }
+            }
+        }
+        return smallest;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem44 exercise = new Problem44();
+        System.out.println(exercise.solution());
+    }
+}
