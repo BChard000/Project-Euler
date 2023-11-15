@@ -1,0 +1,29 @@
+class Problem36 {
+    public String decimalToBinary(int x) {
+        return Integer.toBinaryString(x);
+    }
+
+    public boolean isPalindrome(String numberStr) {
+        return numberStr.contentEquals(new StringBuilder(numberStr).reverse());
+    }
+
+    public int solution() {
+        int sum = 0;
+        for (int decimal = 1; decimal < 1000000; decimal++) {
+            if (isPalindrome(String.valueOf(decimal))) {
+                String binary = decimalToBinary(decimal);
+                if (isPalindrome(binary)) {
+                    sum += decimal;
+                }
+            }
+        }
+        return sum;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Problem36 exercise = new Problem36();
+        System.out.println(exercise.solution());
+    }
+}
